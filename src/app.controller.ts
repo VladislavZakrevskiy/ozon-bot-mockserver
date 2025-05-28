@@ -5,6 +5,13 @@ function getRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const names = [
+  'Коврик в самокат',
+  'Съемники обшивок',
+  'Дверные подлокотники',
+  'Багажный карман',
+];
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -201,7 +208,7 @@ export class AppController {
                 price: `${getRandomNumber(1, 10000)}`,
                 currency_code: 'RUB',
                 offer_id: `УТ-${getRandomNumber(1, 100000)}`,
-                name: `Мяч, цвет: черный, ${getRandomNumber(1, 100)} кг`,
+                name: `${names[getRandomNumber(0, 3)]} v${getRandomNumber(1, 100)}.0`,
                 sku: getRandomNumber(1, 100_000_000),
                 quantity: getRandomNumber(1, 10),
                 products_requiring_jw_uin: '0',
@@ -306,7 +313,7 @@ export class AppController {
           price: getRandomNumber(1, 10000),
           price_without_commission: 0,
           product_id: getRandomNumber(1, 10000),
-          product_name: 'string',
+          product_name: `${names[getRandomNumber(0, 3)]} v${getRandomNumber(1, 100)}.0`,
           quantity: getRandomNumber(1, 10000),
           return_barcode: 'string',
           return_clearing_id: 0,
