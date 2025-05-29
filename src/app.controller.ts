@@ -8,7 +8,7 @@ function getRandomNumber(min: number, max: number) {
 const products = [
   {
     id: 137208233,
-    name: 'Эва коврик в салон',
+    name: 'Коврик из Эко-Кожи',
     offer_id: '143210586',
     images: [
       'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
@@ -51,7 +51,7 @@ const products = [
   },
   {
     id: 1004,
-    name: 'Коврик в багажник',
+    name: 'Коврик домашний',
     offer_id: 'BK-004',
     images: [
       'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
