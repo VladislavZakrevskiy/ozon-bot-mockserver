@@ -14,7 +14,8 @@ const products = [
       'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
       'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
+    primary_image:
+      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
   },
   {
     id: 1001,
@@ -24,7 +25,8 @@ const products = [
       'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg ',
       'https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7417343861.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg ',
+    primary_image:
+      'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg ',
   },
   {
     id: 1002,
@@ -34,7 +36,8 @@ const products = [
       'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
       'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
+    primary_image:
+      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
   },
   {
     id: 1003,
@@ -54,7 +57,8 @@ const products = [
       'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
       'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
+    primary_image:
+      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
   },
 ];
 
@@ -209,7 +213,7 @@ export class AppController {
                 price: `${getRandomNumber(1, 10000)}`,
                 currency_code: 'RUB',
                 offer_id: product.offer_id,
-                name: `${product.name} v${getRandomNumber(1, 100)}.0`,
+                name: `МЯУУУУУУУУУУ v${getRandomNumber(1, 100)}.0`,
                 sku: product.id,
                 quantity: getRandomNumber(1, 10),
                 products_requiring_jw_uin: '0',
