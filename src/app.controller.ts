@@ -9,7 +9,61 @@ const names = [
   'Коврик в самокат',
   'Съемники обшивок',
   'Дверные подлокотники',
-  'Багажный карман',
+  'Коврик в багажник',
+  'Коврик ЭВА в салон'
+];
+
+const products = [
+  {
+    id: 137208233,
+    name: 'Эва коврик в салон',
+    offer_id: '143210586',
+    images: [
+      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg',
+    ],
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg',
+  },
+  {
+    id: 1001,
+    name: 'Коврик в самокат',
+    offer_id: 'KM-001',
+    images: [
+      'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7417343861.jpg',
+    ],
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg',
+  },
+  {
+    id: 1002,
+    name: 'Съемники обшивок',
+    offer_id: 'SM-002',
+    images: [
+      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg',
+    ],
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg',
+  },
+  {
+    id: 1003,
+    name: 'Дверные подлокотники',
+    offer_id: 'DP-003',
+    images: [
+      'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg',
+      'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg',
+    ],
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg',
+  },
+  {
+    id: 1004,
+    name: 'Коврик в багажник',
+    offer_id: 'BK-004',
+    images: [
+      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg',
+    ],
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg',
+  },
 ];
 
 @Controller()
@@ -18,11 +72,11 @@ export class AppController {
 
   @Post('v2/product/info')
   getImages() {
+    const randomProduct = products[getRandomNumber(0, products.length - 1)];
+
     return {
       result: {
-        id: 137208233,
-        name: 'Комплект защитных плёнок для X3 NFC. Темный хлопок',
-        offer_id: '143210586',
+        ...randomProduct,
         is_archived: false,
         is_autoarchived: false,
         barcode: '',
@@ -31,10 +85,6 @@ export class AppController {
         category_id: 17038062,
         type_id: 0,
         created_at: '2021-10-21T15:48:03.529178Z',
-        images: [
-          'https://cdn1.ozone.ru/s3/multimedia-5/6088931525.jpg',
-          'https://cdn1.ozone.ru/s3/multimedia-p/6088915813.jpg',
-        ],
         has_discounted_item: true,
         is_discounted: true,
         discounted_stocks: {
@@ -47,16 +97,16 @@ export class AppController {
         marketing_price: '',
         min_price: '',
         old_price: '',
-        price: '590.0000',
+        price: `${getRandomNumber(100, 999)}.0000`,
         sources: [
           {
             is_enabled: true,
-            sku: 522759607,
+            sku: getRandomNumber(1, 10000),
             source: 'fbo',
           },
           {
             is_enabled: true,
-            sku: 522759608,
+            sku: getRandomNumber(1, 10000),
             source: 'fbs',
           },
         ],
@@ -107,7 +157,6 @@ export class AppController {
         images360: [],
         is_kgt: false,
         color_image: '',
-        primary_image: 'https://cdn1.ozone.ru/s3/multimedia-p/6088931545.jpg',
         status: {
           state: 'imported',
           state_failed: 'imported',
@@ -119,52 +168,7 @@ export class AppController {
           is_failed: true,
           is_created: false,
           state_tooltip: '',
-          item_errors: [
-            {
-              code: 'error_attribute_values_empty',
-              field: 'attribute',
-              attribute_id: 9048,
-              state: 'imported',
-              level: 'error',
-              description:
-                'Не заполнен обязательный атрибут. Иногда мы обновляем обязательные атрибуты или добавляем новые. Отредактируйте товар или загрузите новый XLS-шаблон с актуальными атрибутами. ',
-              optional_description_elements: {},
-              attribute_name: 'Название модели',
-            },
-            {
-              code: 'error_attribute_values_empty',
-              field: 'attribute',
-              attribute_id: 5076,
-              state: 'imported',
-              level: 'error',
-              description:
-                'Не заполнен обязательный атрибут. Иногда мы обновляем обязательные атрибуты или добавляем новые. Отредактируйте товар или загрузите новый XLS-шаблон с актуальными атрибутами. ',
-              optional_description_elements: {},
-              attribute_name: 'Рекомендовано для',
-            },
-            {
-              code: 'error_attribute_values_empty',
-              field: 'attribute',
-              attribute_id: 8229,
-              state: 'imported',
-              level: 'error',
-              description:
-                'Не заполнен обязательный атрибут. Иногда мы обновляем обязательные атрибуты или добавляем новые. Отредактируйте товар или загрузите новый XLS-шаблон с актуальными атрибутами. ',
-              optional_description_elements: {},
-              attribute_name: 'Тип',
-            },
-            {
-              code: 'error_attribute_values_empty',
-              field: 'attribute',
-              attribute_id: 85,
-              state: 'imported',
-              level: 'error',
-              description:
-                'Не заполнен обязательный атрибут. Иногда мы обновляем обязательные атрибуты или добавляем новые. Отредактируйте товар или загрузите новый XLS-шаблон с актуальными атрибутами. ',
-              optional_description_elements: {},
-              attribute_name: 'Бренд',
-            },
-          ],
+          item_errors: [],
           state_updated_at: '2021-10-21T15:48:03.927309Z',
         },
       },
