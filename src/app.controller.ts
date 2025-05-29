@@ -58,12 +58,8 @@ const products = [
   },
 ];
 
-function getProductNameByOfferId(offerId: string): string {
-  const product = products.find(p => p.offer_id === offerId);
-  if (product) {
-    return `${product.name} v${getRandomNumber(1, 100)}.0`;
-  }
-  return `Неизвестный товар v${getRandomNumber(1, 100)}.0`;
+function getRandomProduct() {
+  return products[getRandomNumber(0, products.length - 1)];
 }
 
 @Controller()
@@ -72,10 +68,10 @@ export class AppController {
 
   @Post('v2/product/info')
   getImages() {
-    const randomProduct = products[getRandomNumber(0, products.length - 1)];
+    const product = getRandomProduct();
     return {
       result: {
-        ...randomProduct,
+        ...product,
         is_archived: false,
         is_autoarchived: false,
         barcode: '',
@@ -176,8 +172,7 @@ export class AppController {
 
   @Post('/v3/posting/fbs/unfulfilled/list')
   getProducts() {
-
-    const randomProduct = products[getRandomNumber(0, products.length - 1)];
+    const product = getRandomProduct();
 
     return {
       result: {
@@ -213,9 +208,9 @@ export class AppController {
               {
                 price: `${getRandomNumber(1, 10000)}`,
                 currency_code: 'RUB',
-                offer_id: randomProduct.offer_id,
-                name: getProductNameByOfferId(randomProduct.offer_id),
-                sku: randomProduct.id,
+                offer_id: product.offer_id,
+                name: `${product.name} v${getRandomNumber(1, 100)}.0`,
+                sku: product.id,
                 quantity: getRandomNumber(1, 10),
                 products_requiring_jw_uin: '0',
                 mandatory_mark: [],
@@ -299,8 +294,7 @@ export class AppController {
 
   @Post('v3/returns/company/fbs')
   getReturns() {
-
-    const randomProduct = products[getRandomNumber(0, products.length - 1)];
+    const product = getRandomProduct();
 
     return {
       last_id: getRandomNumber(1, 10000),
@@ -322,7 +316,7 @@ export class AppController {
           price: getRandomNumber(1, 10000),
           price_without_commission: 0,
           product_id: getRandomNumber(1, 10000),
-          product_name: getProductNameByOfferId(randomProduct.offer_id),
+          product_name: `${product.name} v${getRandomNumber(1, 100)}.0`,
           quantity: getRandomNumber(1, 10000),
           return_barcode: 'string',
           return_clearing_id: 0,
