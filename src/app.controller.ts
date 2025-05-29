@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 function getRandomNumber(min: number, max: number) {
@@ -71,8 +71,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post('v2/product/info')
-  getImages() {
-    const product = getRandomProduct();
+  getImages(@Body() body: { offer_id: string }) {
+    const product = products.find(({ offer_id }) => offer_id === body.offer_id);
     return {
       result: {
         ...product,
