@@ -5,66 +5,66 @@ function getRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const names = [
-  'Коврик в самокат',
-  'Съемники обшивок',
-  'Дверные подлокотники',
-  'Коврик в багажник',
-  'Коврик ЭВА в салон'
-];
-
 const products = [
   {
     id: 137208233,
     name: 'Эва коврик в салон',
     offer_id: '143210586',
     images: [
-      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg',
-      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
+      'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg',
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6983806600.jpg ',
   },
   {
     id: 1001,
     name: 'Коврик в самокат',
     offer_id: 'KM-001',
     images: [
-      'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg',
-      'https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7417343861.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg ',
+      'https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7417343861.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg',
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7531310180.jpg ',
   },
   {
     id: 1002,
     name: 'Съемники обшивок',
     offer_id: 'SM-002',
     images: [
-      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg',
-      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
+      'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg',
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7299483301.jpg ',
   },
   {
     id: 1003,
     name: 'Дверные подлокотники',
     offer_id: 'DP-003',
     images: [
-      'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg',
-      'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg',
+      'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg ',
+      'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg',
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-7/wc1000/6402625267.jpg ',
   },
   {
     id: 1004,
     name: 'Коврик в багажник',
     offer_id: 'BK-004',
     images: [
-      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg',
-      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
+      'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
     ],
-    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg',
+    primary_image: 'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
   },
 ];
+
+function getProductNameByOfferId(offerId: string): string {
+  const product = products.find(p => p.offer_id === offerId);
+  if (product) {
+    return `${product.name} v${getRandomNumber(1, 100)}.0`;
+  }
+  return `Неизвестный товар v${getRandomNumber(1, 100)}.0`;
+}
 
 @Controller()
 export class AppController {
@@ -73,7 +73,6 @@ export class AppController {
   @Post('v2/product/info')
   getImages() {
     const randomProduct = products[getRandomNumber(0, products.length - 1)];
-
     return {
       result: {
         ...randomProduct,
@@ -177,6 +176,9 @@ export class AppController {
 
   @Post('/v3/posting/fbs/unfulfilled/list')
   getProducts() {
+
+    const randomProduct = products[getRandomNumber(0, products.length - 1)];
+
     return {
       result: {
         postings: [
@@ -211,9 +213,9 @@ export class AppController {
               {
                 price: `${getRandomNumber(1, 10000)}`,
                 currency_code: 'RUB',
-                offer_id: `УТ-${getRandomNumber(1, 100000)}`,
-                name: `${names[getRandomNumber(0, 3)]} v${getRandomNumber(1, 100)}.0`,
-                sku: getRandomNumber(1, 100_000_000),
+                offer_id: randomProduct.offer_id,
+                name: getProductNameByOfferId(randomProduct.offer_id),
+                sku: randomProduct.id,
                 quantity: getRandomNumber(1, 10),
                 products_requiring_jw_uin: '0',
                 mandatory_mark: [],
@@ -297,6 +299,9 @@ export class AppController {
 
   @Post('v3/returns/company/fbs')
   getReturns() {
+
+    const randomProduct = products[getRandomNumber(0, products.length - 1)];
+
     return {
       last_id: getRandomNumber(1, 10000),
       returns: [
@@ -317,7 +322,7 @@ export class AppController {
           price: getRandomNumber(1, 10000),
           price_without_commission: 0,
           product_id: getRandomNumber(1, 10000),
-          product_name: `${names[getRandomNumber(0, 3)]} v${getRandomNumber(1, 100)}.0`,
+          product_name: getProductNameByOfferId(randomProduct.offer_id),
           quantity: getRandomNumber(1, 10000),
           return_barcode: 'string',
           return_clearing_id: 0,
