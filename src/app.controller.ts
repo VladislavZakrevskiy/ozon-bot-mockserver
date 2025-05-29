@@ -320,7 +320,7 @@ export class AppController {
           price: getRandomNumber(1, 10000),
           price_without_commission: 0,
           product_id: getRandomNumber(1, 10000),
-          product_name: `${product.name} v${getRandomNumber(1, 100)}.0`,
+          product_name: `гфврмдлвтдлмтлдвытмдл v${getRandomNumber(1, 100)}.0`,
           quantity: getRandomNumber(1, 10000),
           return_barcode: 'string',
           return_clearing_id: 0,
