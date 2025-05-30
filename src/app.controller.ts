@@ -51,7 +51,7 @@ const products = [
   },
   {
     id: 1004,
-    name: 'Коврик домашний',
+    name: 'Коврики в салон',
     offer_id: 'BK-004',
     images: [
       'https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7247554864.jpg ',
